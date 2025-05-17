@@ -34,6 +34,10 @@ body {
     width: 100%;
   }
 }
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
 
     .container {
       max-width: 800px;
