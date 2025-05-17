@@ -38,6 +38,10 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
+img {
+  max-width: 100%;
+  height: auto;
+}
 
     .container {
       max-width: 800px;
