@@ -18,23 +18,6 @@ body {
   font-size: 16px;
   padding: 20px;
 }
-
-/* Mobile styles */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  .navbar {
-    flex-direction: column;
-  }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
     h1 {
       font-family: 'Rubik Wet Paint', cursive;
       color: #ff6b6b;
