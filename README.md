@@ -250,7 +250,7 @@
 
 <a href="https://drive.google.com/file/d/1-AbWgsLF7t5YRKmWoXJ5V7tdIT_A-L82/view" download>
   <button id="download-btn" style="padding: 12px 24px; background-color: #28a745; color: white; font-size: 16px; border: none; border-radius: 8px; cursor: pointer;">
-    Download iCaption App
+    Download itext App
   </button>
 </a>
 <div id="loading" style="display:none;">Loading, please wait...</div>
