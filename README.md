@@ -3,51 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>iText - Stylish Text Generator</title>
+  <title>iText - AI Stylish Text Generator</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lobster&family=Pacifico&family=Rubik+Glitch&family=Rubik+Wet+Paint&family=Secular+One&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       background: linear-gradient(45deg, #2b1055, #7597de);
       min-height: 100vh;
       color: white;
       font-family: 'Arial', sans-serif;
       padding: 20px;
-      margin: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     h1 {
       font-family: 'Rubik Wet Paint', cursive;
       color: #ff6b6b;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      font-size: 2.2em;
-      text-align: center;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: auto;
+      font-size: 2.5em;
     }
 
     .input-section {
-      margin: 20px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+      margin: 30px 0;
     }
 
     textarea {
-      width: 100%;
+      width: 80%;
       height: 100px;
       padding: 15px;
       border-radius: 15px;
       border: 3px solid #ff6b6b;
       background: rgba(255,255,255,0.9);
-      font-size: 1.1em;
-      color: #333;
+      font-size: 1.2em;
+    }
+
+    .style-selector {
+      margin: 20px 0;
     }
 
     select {
@@ -60,6 +55,21 @@
       cursor: pointer;
     }
 
+    .output-section {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 20px;
+      margin: 20px 0;
+      min-height: 100px;
+    }
+
+    .styled-text {
+      font-size: 1.5em;
+      margin: 20px 0;
+      padding: 15px;
+      word-wrap: break-word;
+    }
+
     .copy-btn {
       background: #4CAF50;
       color: white;
@@ -68,25 +78,12 @@
       border-radius: 25px;
       cursor: pointer;
       font-size: 1.1em;
-      transition: all 0.3s ease;
-      margin-top: 10px;
+      transition: transform 0.3s, background-color 0.3s, opacity 0.3s;
+      margin-top: 15px;
     }
 
     .copy-btn:hover {
       transform: scale(1.05);
-    }
-
-    .output-section {
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 20px;
-      margin-top: 20px;
-      min-height: 100px;
-    }
-
-    .styled-text {
-      font-size: 1.5em;
-      word-wrap: break-word;
     }
 
     .credit {
@@ -94,13 +91,6 @@
       font-family: 'Dancing Script', cursive;
       font-size: 1.4em;
       color: #ffd93d;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2em;
-      }
     }
   </style>
 </head>
@@ -109,17 +99,19 @@
     <h1>iText ✨</h1>
     <div class="input-section">
       <textarea id="inputText" placeholder="Enter your text here..."></textarea>
-      <select id="styleSelect">
-        <option value="handwriting">Handwriting Style</option>
-        <option value="roman">Roman Style</option>
-        <option value="bold-style">Bold Style</option>
-        <option value="aesthetic">Aesthetic Style</option>
-        <option value="cyber">Cyber Style</option>
-        <option value="graffiti">Graffiti Style</option>
-        <option value="modern">Modern Style</option>
-        <option value="shadow">Shadow Style</option>
-        <option value="gradient-text">Gradient Style</option>
-      </select>
+      <div class="style-selector">
+        <select id="styleSelect">
+          <option value="handwriting">Handwriting Style</option>
+          <option value="roman">Roman Style</option>
+          <option value="bold-style">Bold Style</option>
+          <option value="aesthetic">Aesthetic Style</option>
+          <option value="cyber">Cyber Style</option>
+          <option value="graffiti">Graffiti Style</option>
+          <option value="modern">Modern Style</option>
+          <option value="shadow">Shadow Style</option>
+          <option value="gradient-text">Gradient Style</option>
+        </select>
+      </div>
       <button class="copy-btn" onclick="copyText()">Copy Text 📋</button>
     </div>
 
@@ -132,8 +124,7 @@
     </div>
   </div>
 
-  <audio id="typeSound" src="clickmouse-266516.mp3" preload="auto"></audio>
-  <audio id="copySound" src="https://www.myinstants.com/media/sounds/click-clasic.mp3" preload="auto"></audio>
+  <audio id="copySound" src="https://www.myinstants.com/media/sounds/click-clasic.mp3"></audio>
 
   <script>
     const inputText = document.getElementById('inputText');
@@ -141,7 +132,6 @@
     const output = document.getElementById('output');
     const copyBtn = document.querySelector('.copy-btn');
     const copySound = document.getElementById('copySound');
-    const typeSound = document.getElementById('typeSound');
 
     const styles = {
       'handwriting': text => toScript(text),
@@ -172,17 +162,20 @@
     function copyText() {
       updateText();
       const text = output.textContent.trim();
+
       if (!text) {
         showCopyMessage("Please enter text!", "#e74c3c");
         return;
       }
 
-      navigator.clipboard.writeText(text).then(() => {
-        if (copySound) copySound.play();
-        showCopyMessage("Copied!", "#2ecc71");
-      }).catch(err => {
-        console.error('Copy failed:', err);
-      });
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          if (copySound) copySound.play();
+          showCopyMessage("Copied!", "#2ecc71");
+        })
+        .catch(err => {
+          console.error('Copy failed:', err);
+        });
     }
 
     function showCopyMessage(message, bgColor) {
@@ -198,18 +191,7 @@
       }, 2000);
     }
 
-    inputText.addEventListener('input', () => {
-      updateText();
-      if (typeSound) {
-        typeSound.currentTime = 0;
-        typeSound.play().catch(() => {});
-      }
-    });
-
-    styleSelect.addEventListener('change', updateText);
-    updateText();
-
-    // Style helpers
+    // Helpers
     function toScript(text) {
       const map = {'A':'𝒜','B':'ℬ','C':'𝒞','D':'𝒟','E':'ℰ','F':'ℱ','G':'𝒢','H':'ℋ','I':'ℐ','J':'𝒥','K':'𝒦','L':'ℒ','M':'ℳ','N':'𝒩','O':'𝒪','P':'𝒫','Q':'𝒬','R':'ℛ','S':'𝒮','T':'𝒯','U':'𝒰','V':'𝒱','W':'𝒲','X':'𝒳','Y':'𝒴','Z':'𝒵','a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'};
       return text.split('').map(c => map[c] || c).join('');
@@ -235,6 +217,41 @@
         return c;
       }).join('');
     }
+
+    inputText.addEventListener('input', updateText);
+    styleSelect.addEventListener('change', updateText);
+    updateText(); // initial
   </script>
+<script async="async" data-cfasync="false" src="//pl26656079.profitableratecpm.com/81e933a9338de5fd7090b71aeda2c6f7/invoke.js"></script>
+  <div id="container-81e933a9338de5fd7090b71aeda2c6f7"></div>
 </body>
 </html>
+<script>
+  function isLikelyInApp() {
+    const ua = navigator.userAgent.toLowerCase();
+    return (
+      ua.includes("wv") || 
+      ua.includes("webview") || 
+      ua.includes("version/") && ua.includes("chrome/") && !ua.includes("safari") ||
+      (window.navigator.standalone === false) || 
+      (window.matchMedia('(display-mode: standalone)').matches) ||
+      (typeof window.ReactNativeWebView !== "undefined") ||
+      (window.location !== window.parent.location)
+    );
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById("download-btn");
+    if (isLikelyInApp() && btn) {
+      btn.style.display = "none";
+    }
+  });
+</script>
+
+<a href="https://drive.google.com/file/d/1-AbWgsLF7t5YRKmWoXJ5V7tdIT_A-L82/view" download>
+  <button id="download-btn" style="padding: 12px 24px; background-color: #28a745; color: white; font-size: 16px; border: none; border-radius: 8px; cursor: pointer;">
+    Download itext App
+  </button>
+</a>
+<div id="loading" style="display:none;">Loading, please wait...</div>
+<div id="result"></div>
