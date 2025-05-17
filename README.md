@@ -29,20 +29,6 @@ body {
   .navbar {
     flex-direction: column;
   }
-
-  .container {
-    width: 100%;
-  }
-}
-.container {
-  display: flex;
-  flex-wrap: wrap;
-}
-img {
-  max-width: 100%;
-  height: auto;
-}
-
     .container {
       max-width: 800px;
       margin: 0 auto;
