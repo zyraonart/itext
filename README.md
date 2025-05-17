@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>iText - AI Stylish Text Generator</title>
-  <meta name="color-scheme" content="light dark">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lobster&family=Pacifico&family=Rubik+Glitch&family=Rubik+Wet+Paint&family=Secular+One&display=swap" rel="stylesheet"/>
   <style>
     body {
@@ -13,35 +12,12 @@
       color: white;
       font-family: 'Arial', sans-serif;
       padding: 20px;
-      font-size: 16px;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        font-size: 14px;
-        padding: 10px;
-      }
-
-      .navbar {
-        flex-direction: column;
-      }
-
-      .container {
-        width: 100%;
-      }
     }
 
     .container {
-      display: flex;
-      flex-wrap: wrap;
       max-width: 800px;
       margin: 0 auto;
       text-align: center;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
     }
 
     h1 {
@@ -116,17 +92,6 @@
       font-size: 1.4em;
       color: #ffd93d;
     }
-
-    #download-btn {
-      padding: 12px 24px;
-      background-color: #28a745;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
@@ -155,13 +120,8 @@
     </div>
 
     <div class="credit">
-      Created with ❤️ by 
-      <a href="https://www.instagram.com/zyraon.art/" target="_blank" style="color: #ffd93d;">Zyraon</a>
+      Created with ❤️ by <a href="https://www.instagram.com/zyraon.art/" target="_blank" style="color: #ffd93d;">Zyraon</a>
     </div>
-
-    <a href="https://drive.google.com/file/d/1-AbWgsLF7t5YRKmWoXJ5V7tdIT_A-L82/view" download>
-      <button id="download-btn">Download iText App</button>
-    </a>
   </div>
 
   <audio id="copySound" src="https://www.myinstants.com/media/sounds/click-clasic.mp3"></audio>
@@ -231,6 +191,7 @@
       }, 2000);
     }
 
+    // Helpers
     function toScript(text) {
       const map = {'A':'𝒜','B':'ℬ','C':'𝒞','D':'𝒟','E':'ℰ','F':'ℱ','G':'𝒢','H':'ℋ','I':'ℐ','J':'𝒥','K':'𝒦','L':'ℒ','M':'ℳ','N':'𝒩','O':'𝒪','P':'𝒫','Q':'𝒬','R':'ℛ','S':'𝒮','T':'𝒯','U':'𝒰','V':'𝒱','W':'𝒲','X':'𝒳','Y':'𝒴','Z':'𝒵','a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'ℯ','f':'𝒻','g':'ℊ','h':'𝒽','i':'𝒾','j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'ℴ','p':'𝓅','q':'𝓆','r':'𝓇','s':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏'};
       return text.split('').map(c => map[c] || c).join('');
@@ -259,31 +220,38 @@
 
     inputText.addEventListener('input', updateText);
     styleSelect.addEventListener('change', updateText);
-    updateText();
-
-    function isLikelyInApp() {
-      const ua = navigator.userAgent.toLowerCase();
-      return (
-        ua.includes("wv") ||
-        ua.includes("webview") ||
-        (ua.includes("version/") && ua.includes("chrome/") && !ua.includes("safari")) ||
-        window.navigator.standalone === false ||
-        window.matchMedia('(display-mode: standalone)').matches ||
-        typeof window.ReactNativeWebView !== "undefined" ||
-        (window.location !== window.parent.location)
-      );
-    }
-
-    window.addEventListener('DOMContentLoaded', function () {
-      const btn = document.getElementById("download-btn");
-      if (isLikelyInApp() && btn) {
-        btn.style.display = "none";
-      }
-    });
+    updateText(); // initial
   </script>
-
-  <!-- Ad Script -->
-  <script async="async" data-cfasync="false" src="//pl26656079.profitableratecpm.com/81e933a9338de5fd7090b71aeda2c6f7/invoke.js"></script>
+<script async="async" data-cfasync="false" src="//pl26656079.profitableratecpm.com/81e933a9338de5fd7090b71aeda2c6f7/invoke.js"></script>
   <div id="container-81e933a9338de5fd7090b71aeda2c6f7"></div>
 </body>
 </html>
+<script>
+  function isLikelyInApp() {
+    const ua = navigator.userAgent.toLowerCase();
+    return (
+      ua.includes("wv") || 
+      ua.includes("webview") || 
+      ua.includes("version/") && ua.includes("chrome/") && !ua.includes("safari") ||
+      (window.navigator.standalone === false) || 
+      (window.matchMedia('(display-mode: standalone)').matches) ||
+      (typeof window.ReactNativeWebView !== "undefined") ||
+      (window.location !== window.parent.location)
+    );
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById("download-btn");
+    if (isLikelyInApp() && btn) {
+      btn.style.display = "none";
+    }
+  });
+</script>
+
+<a href="https://drive.google.com/file/d/1-AbWgsLF7t5YRKmWoXJ5V7tdIT_A-L82/view" download>
+  <button id="download-btn" style="padding: 12px 24px; background-color: #28a745; color: white; font-size: 16px; border: none; border-radius: 8px; cursor: pointer;">
+    Download iCaption App
+  </button>
+</a>
+<div id="loading" style="display:none;">Loading, please wait...</div>
+<div id="result"></div>
