@@ -13,6 +13,27 @@
       font-family: 'Arial', sans-serif;
       padding: 20px;
     }
+/* Desktop default */
+body {
+  font-size: 16px;
+  padding: 20px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  .container {
+    width: 100%;
+  }
+}
 
     .container {
       max-width: 800px;
