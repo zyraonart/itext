@@ -1,9 +1,9 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>iText - AI Stylish Text Generator</title>
+  <meta - AI Stylish Text Generator
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lobster&family=Pacifico&family=Rubik+Glitch&family=Rubik+Wet+Paint&family=Secular+One&display=swap" rel="stylesheet"/>
   <style>
     body {
@@ -13,6 +13,35 @@
       font-family: 'Arial', sans-serif;
       padding: 20px;
     }
+/* Desktop default */
+body {
+  font-size: 16px;
+  padding: 20px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  .container {
+    width: 100%;
+  }
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
 
     .container {
       max-width: 800px;
